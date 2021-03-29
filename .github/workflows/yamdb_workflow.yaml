@@ -79,7 +79,7 @@ jobs:
             sudo systemctl start docker
             sudo systemctl enable docker
             cd ${{ env.PROJECT_ROOT }}
-            sudo docker pull dasemenov/yamdb_final:latest
+            sudo docker pull lexlibman/yamdb_final:latest
             sudo docker-compose stop
             sudo docker-compose rm web
             sudo docker-compose up -d
@@ -93,4 +93,4 @@ jobs:
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: ${{ github.workflow }} успешно выполнен!!
+          message: ${{ github.workflow }} успешно выполнен!
