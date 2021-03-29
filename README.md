@@ -1,3 +1,5 @@
+![yamdb](https://github.com/lexlibman/yamdb_final/workflows/yamdb/badge.svg?branch=master)
+
 #API_YaMDB
 
 It's api for my learning project. 
