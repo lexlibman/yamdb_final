@@ -55,7 +55,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             sudo docker pull lexlibman/yamdb_final
-            cd /home/${{ secrets.USER }}/yamdb_final
+            cd /home/lexlibman/yamdb_final
             sudo docker-compose stop
             sudo docker-compose rm web
             sudo docker-compose up -d
