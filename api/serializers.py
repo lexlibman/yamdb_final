@@ -40,11 +40,18 @@ class ReviewSerializer(serializers.ModelSerializer):
         request = self.context.get('request')
 
         if request.method == 'POST':
-            title = get_object_or_404(Title, id=request.parser_context["kwargs"]["title_id"])
-            review_existed = Review.objects.filter(author=request.user, title=title).exists()
+            title = get_object_or_404(
+                Title,
+                id=request.parser_context["kwargs"]["title_id"]
+            )
+            review_existed = Review.objects.filter(
+                author=request.user,
+                title=title
+            ).exists()
 
             if review_existed:
-                raise serializers.ValidationError('Review from that user has already been created')
+                raise serializers.ValidationError('Review from that user '
+                                                  'has already been created')
 
         return data
 

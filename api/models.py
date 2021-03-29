@@ -172,7 +172,8 @@ class Review (models.Model):
         output_text = self.show_text_preview()
         author = self.author
 
-        return f'Author: {author}, Date: {self.pub_date:%Y-%m-%d}, Text: {output_text}'
+        return (f'Author: {author}, Date: {self.pub_date:%Y-%m-%d}, '
+                f'Text: {output_text}')
     __str__.short_description = 'Review preview'
     post_preview = property(__str__)
 
@@ -226,7 +227,8 @@ class Comment(models.Model):
         output_text = self.show_text_preview()
         author = self.author
 
-        return f'Author: {author}, Date: {self.pub_date:%Y-%m-%d}, Text: {output_text}'
+        return (f'Author: {author}, Date: {self.pub_date:%Y-%m-%d}, '
+                f'Text: {output_text}')
     __str__.short_description = 'Comment preview'
     post_preview = property(__str__)
 

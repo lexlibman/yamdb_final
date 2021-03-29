@@ -102,11 +102,19 @@ class UserViewSet(viewsets.ModelViewSet):
     search_fields = ['username']
     lookup_field = 'username'
 
-    @action(methods=('get', 'patch'), detail=False, permission_classes=(IsOwner,))
+    @action(
+        methods=('get', 'patch'),
+        detail=False,
+        permission_classes=(IsOwner,)
+    )
     def me(self, request):
         if request.GET == 'GET':
             return User.objects.filter(request.user)
-        serializer = self.get_serializer(request.user, data=request.data, partial=True)
+        serializer = self.get_serializer(
+            request.user,
+            data=request.data,
+            partial=True
+        )
         serializer.is_valid(raise_exception=True)
         serializer.save(role=request.user.role)
         return Response(serializer.data, status.HTTP_200_OK)
@@ -142,7 +150,10 @@ class GenreViewSet(CreateListDestroyViewSet):
 
 class ReviewViewSet(viewsets.ModelViewSet):
     serializer_class = ReviewSerializer
-    permission_classes = (IsAuthenticatedOrReadOnly, IsOwnerAdminModeratorOrReadOnly)
+    permission_classes = (
+        IsAuthenticatedOrReadOnly,
+        IsOwnerAdminModeratorOrReadOnly
+    )
 
     def get_queryset(self):
         title = get_object_or_404(Title, id=self.kwargs.get('title_id'))
@@ -155,7 +166,10 @@ class ReviewViewSet(viewsets.ModelViewSet):
 
 class CommentViewSet(viewsets.ModelViewSet):
     serializer_class = CommentSerializer
-    permission_classes = (IsAuthenticatedOrReadOnly, IsOwnerAdminModeratorOrReadOnly)
+    permission_classes = (
+        IsAuthenticatedOrReadOnly,
+        IsOwnerAdminModeratorOrReadOnly
+    )
 
     def get_queryset(self):
         review = get_object_or_404(

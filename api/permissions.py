@@ -11,7 +11,10 @@ class IsOwner(permissions.BasePermission):
 
 class IsAdmin(permissions.BasePermission):
     def has_permission(self, request, view):
-        return bool(request.user.is_authenticated and request.user.is_administrator)
+        return bool(
+            request.user.is_authenticated
+            and request.user.is_administrator
+        )
 
 
 class IsAdminOrReadOnly(permissions.BasePermission):
