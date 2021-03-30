@@ -55,11 +55,11 @@ jobs:
           passphrase: ${{ secrets.PASSPHRASE }}
           key: ${{ secrets.SSH_KEY }}
           script: |
+            sudo docker pull ${{ secrets.DOCKER_USERNAME }}/yamdb_final:latest
             cd yamdb_final
             sudo rm .env
             sudo mv .env.example .env
             sudo echo 'POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}' >> .env
-            sudo docker pull ${{ secrets.DOCKER_LOGIN }}/yamdb_final:latest
             sudo docker-compose up --force-recreate --no-deps -d web
             sudo docker image prune -f
   send_message:
