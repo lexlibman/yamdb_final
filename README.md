@@ -26,7 +26,7 @@ What things you need to install the software and how to install them
 
 A step by step series of examples that tell you have to get a development env running
 
-Environment variables what you need are in .env.example file
+Environment variables what you need are in ```.env.example``` file
 
 Put they to .env and set yours values
 
@@ -62,7 +62,14 @@ Example of initializing start data
 $ python manage.py loaddata fixtures.json
 ```
 
-### Site is working on *your-ip-address*:8000/admin
+### Site is working on: 
+* [178.154.211.36:8000/admin/](http://178.154.211.36:8000/admin)
+
+### Documentation:
+* [178.154.211.36:8000/redoc/](http://178.154.211.36:8000/redoc)
+
+### API:
+* [178.154.211.36:8000/api/v1/](http://178.154.211.36:8000/redoc)
 
 ## Running the tests
 
@@ -71,14 +78,18 @@ Use [pytest](https://docs.pytest.org/en/stable/)
 Tests check settings of Django, dockerfile, docker-compose ane requirements
 
 ## Project powered by:
-[Python 3.8.5](https://www.python.org/downloads/release/python-385/) <br>
-[Django 3.0.8](https://www.djangoproject.com) <br>
-[Django Rest Framework 3.11.0](https://www.django-rest-framework.org) <br>
-[Simple JWT 4.3.0](https://django-rest-framework-simplejwt.readthedocs.io/en/latest/)
+* [Python 3.8.5](https://www.python.org/downloads/release/python-385/) <br>
+* [Django 3.0.8](https://www.djangoproject.com) <br>
+* [Django Rest Framework 3.11.0](https://www.django-rest-framework.org) <br>
+* [Simple JWT 4.3.0](https://django-rest-framework-simplejwt.readthedocs.io/en/latest/)
 
 ## Authors
 
 **Aleksei Libman** - *Initial work* - (https://github.com/lexlibman)
+
+## License [![BSDv3 license](https://img.shields.io/badge/License-BSDv3-blue.svg)](LICENSE.md)
+
+This project is licensed under the BSD 3 - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Acknowledgments
 
