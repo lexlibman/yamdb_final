@@ -18,6 +18,8 @@ services:
     volumes:
       - ./static:/code/static/
       - ./media:/code/media/
+    expose:
+      - "9010"
     depends_on:
       - db
     env_file:
@@ -31,6 +33,7 @@ services:
       - ./static:/code/static
       - ./media:/code/media
     ports:
-      - 80:80
+      - 10080:80
+      - 10443:443
     depends_on:
       - web
