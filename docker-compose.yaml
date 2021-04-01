@@ -14,8 +14,6 @@ services:
   web:
     image: lexlibman/yamdb_final:latest
     restart: always
-    expose:
-      - 8000
     volumes:
       - ./static:/code/static/
       - ./media:/code/media/
@@ -32,6 +30,6 @@ services:
       - ./static:/code/static
       - ./media:/code/media
     ports:
-      - 8084:80
+      - 8000:80
     depends_on:
       - web
