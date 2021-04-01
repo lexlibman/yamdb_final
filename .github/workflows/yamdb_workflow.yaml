@@ -59,7 +59,6 @@ jobs:
             sudo rm .env
             sudo mv .env.example .env
             sudo echo 'POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}' >> .env
-            sudo echo 'HOST=${{ secrets.HOST }}' >> .env
-            sudo docker-compose stop
-            sudo docker-compose rm web
+            sudo echo 'DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }}' >> .env
+            sudo docker-compose down
             sudo docker-compose up -d

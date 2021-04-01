@@ -1,7 +1,8 @@
-version: '3.3'
+version: '3.8'
 
 volumes:
   postgres_data:
+  static_volume:
 
 services:
   db:
@@ -30,6 +31,6 @@ services:
       - ./static:/code/static
       - ./media:/code/media
     ports:
-      - 8000:80
+      - 80:80
     depends_on:
       - web
