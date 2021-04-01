@@ -36,4 +36,4 @@ services:
       - 10080:80
       - 10443:443
     depends_on:
-      - web
+      - yamdb
