@@ -63,13 +63,13 @@ $ python manage.py loaddata fixtures.json
 ```
 
 ### Site is working on: 
-* [178.154.211.36:8000/admin/](http://178.154.211.36:8000/admin)
+* [130.193.57.79/admin/](http://130.193.57.79/admin/)
 
 ### Documentation:
-* [178.154.211.36:8000/redoc/](http://178.154.211.36:8000/redoc)
+* [130.193.57.79/redoc/](http://130.193.57.79/redoc/)
 
 ### API:
-* [178.154.211.36:8000/api/v1/](http://178.154.211.36:8000/redoc)
+* [130.193.57.79/api/v1/](http://130.193.57.79/api/v1/)
 
 ## Running the tests
 
