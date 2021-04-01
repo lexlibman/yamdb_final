@@ -60,4 +60,5 @@ jobs:
             sudo mv .env.example .env
             sudo echo 'POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}' >> .env
             sudo docker-compose stop
+            sudo docker-compose rm web
             sudo docker-compose up -d
