@@ -12,7 +12,7 @@ services:
     env_file:
       - ./.env
 
-  web:
+  yamdb:
     image: lexlibman/yamdb_final:latest
     restart: always
     volumes:
