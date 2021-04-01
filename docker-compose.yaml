@@ -30,6 +30,6 @@ services:
       - ./static:/code/static
       - ./media:/code/media
     ports:
-      - 90:90
+      - 80:80
     depends_on:
       - web
