@@ -55,12 +55,10 @@ jobs:
           passphrase: ${{ secrets.PASSPHRASE }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            export DB_ENGINE=${{ secrets.DB_ENGINE }}
-            export DB_NAME=${{ secrets.DB_NAME }}
-            export POSTGRES_USER=${{ secrets.POSTGRES_USER }}
-            export POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}
-            export DB_HOST=${{ secrets.DB_HOST }}
-            export DB_PORT=${{ secrets.DB_PORT }}
+            cd yamdb_final
+            sudo rm .env
+            sudo mv .env.example .env
+            sudo echo 'POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}' >> .env
             sudo docker-compose stop
             sudo docker-compose rm web
             sudo docker-compose up -d
