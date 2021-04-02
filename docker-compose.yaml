@@ -17,8 +17,6 @@ services:
   yamdb:
     image: lexlibman/yamdb_final:latest
     restart: always
-    expose:
-      - 8000
     volumes:
       - ./static_volume:/code/static
     depends_on:
@@ -33,7 +31,6 @@ services:
       - ./static_volume:/code/static
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
     ports:
-      - 10080:80
-      - 10443:443
+      - 80:80
     depends_on:
       - yamdb

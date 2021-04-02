@@ -68,8 +68,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
           script: |
-            cd ~
-            cd ./code
+            cd /home/lexlibman/code
             sudo docker-compose down
-            sudo docker pull lexlibman/yamdb_final:latest
+            sudo docker image rm lexlibman/yamdb_final:latest
             sudo docker-compose up -d
