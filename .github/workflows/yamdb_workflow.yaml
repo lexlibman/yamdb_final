@@ -56,34 +56,9 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
-          source: "nginx/default.conf, ./docker-compose.yaml"
+          source: "./.env, nginx/default.conf, ./docker-compose.yaml"
           target: "/home/lexlibman/code"
 
-      - name: Set environment variables
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USER }}
-          key: ${{ secrets.SSH_KEY }}
-          passphrase: ${{ secrets.PASSPHRASE }}
-          script: |
-            FILE=.env
-            if [ -f "$FILE" ]
-            then
-              echo "$FILE exists and will removed"
-              rm $FILE
-            else
-              echo "$FILE does not exist"
-            fi
-            echo "Add new $FILE"
-            touch $FILE
-            echo DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }} >> $FILE
-            echo DB_ENGINE=${{ secrets.DB_ENGINE }} >> $FILE
-            echo DB_NAME=${{ secrets.DB_NAME }} >> .env
-            echo POSTGRES_USER=${{ secrets.POSTGRES_USER }} >> $FILE
-            echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> $FILE
-            echo DB_HOST=${{ secrets.DB_HOST }} >> $FILE
-            echo DB_PORT=${{ secrets.DB_PORT }} >> $FILE
 
       - name: executing remote ssh commands to deploy
         uses: appleboy/ssh-action@master
