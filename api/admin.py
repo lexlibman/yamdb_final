@@ -1,45 +1,58 @@
 from django.contrib import admin
-from django.contrib.auth import get_user_model
 
-from .models import Category, Comment, Genre, Review, Title
-
-User = get_user_model()
-
-
-class UserAdmin(admin.ModelAdmin):
-    list_display = ('email', 'username', 'role', 'first_name', 'last_name')
-    empty_value_display = '---'
-
-
-class CommentAdmin(admin.ModelAdmin):
-    list_display = ('review_id', 'text', 'author', 'pub_date')
-    search_fields = ('text',)
-    list_filter = ('pub_date',)
-    empty_value_display = '---'
-
-
-class ReviewAdmin(admin.ModelAdmin):
-    list_display = ('title_id', 'text', 'author', 'score', 'pub_date')
-    search_fields = ('text',)
-    empty_value_display = '---'
+from api.models import Category, Comment, Genre, Review, Title, User
 
 
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('name', 'slug')
+    """
+    Администрирование категорий.
+    """
+    list_display = ('id', 'name', 'slug')
+    empty_value_display = '-пусто-'
 
 
 class GenreAdmin(admin.ModelAdmin):
-    list_display = ('name', 'slug')
+    """
+    Администрирование жанров.
+    """
+    list_display = ('id', 'name', 'slug')
+    empty_value_display = '-пусто-'
 
 
 class TitleAdmin(admin.ModelAdmin):
-    list_display = ('name', 'year', 'category')
-    empty_value_display = '---'
+    """
+    Администрирование произведений.
+    """
+    list_display = ('id', 'name', 'year', 'description', 'category')
+    empty_value_display = '-пусто-'
 
 
-admin.site.register(Comment, CommentAdmin)
-admin.site.register(Review, ReviewAdmin)
-admin.site.register(Category, CategoryAdmin)
+class ReviewAdmin(admin.ModelAdmin):
+    """
+    Администрирование отзывов.
+    """
+    list_display = ('id', 'text', 'author', 'score', 'pub_date')
+    empty_value_display = '-пусто-'
+
+
+class CommentAdmin(admin.ModelAdmin):
+    """
+    Администрирование комментариев.
+    """
+    list_display = ('id', 'text', 'author', 'pub_date')
+    empty_value_display = '-пусто-'
+
+
+class UserAdmin(admin.ModelAdmin):
+    """
+    Администрирование ролей пользователей.
+    """
+    list_display = ("role",)
+
+
 admin.site.register(Title, TitleAdmin)
 admin.site.register(Genre, GenreAdmin)
+admin.site.register(Category, CategoryAdmin)
+admin.site.register(Review, ReviewAdmin)
+admin.site.register(Comment, CommentAdmin)
 admin.site.register(User, UserAdmin)

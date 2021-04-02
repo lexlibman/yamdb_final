@@ -2,31 +2,28 @@ from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 
 from .views import (CategoryViewSet, CommentViewSet, GenreViewSet,
-                    ReviewViewSet, TitlesViewSet, UserViewSet,
-                    send_confirm_code, send_token)
+                    RegisterView, ReviewViewSet, TitlesViewSet, TokenView,
+                    UsersViewSet)
 
-v1_router = DefaultRouter()
-v1_router.register('users', UserViewSet, basename='user_detail')
-v1_router.register('titles', TitlesViewSet, basename='Title')
-v1_router.register('genres', GenreViewSet, basename='Genre')
-v1_router.register('categories', CategoryViewSet, basename='Category')
-v1_router.register(
+router_v1 = DefaultRouter()
+router_v1.register(r'users', UsersViewSet, basename='users')
+router_v1.register("titles", TitlesViewSet, basename='Title')
+router_v1.register("genres", GenreViewSet, basename='Genre')
+router_v1.register("categories", CategoryViewSet, basename='Category')
+router_v1.register(
     r'titles/(?P<title_id>[0-9]+)/reviews',
     ReviewViewSet,
-    basename='reviews'
+    basename='Review'
 )
-v1_router.register(
+router_v1.register(
     r'titles/(?P<title_id>[0-9]+)/reviews/(?P<review_id>[0-9]+)/comments',
     CommentViewSet,
-    basename='comments'
+    basename='Comment'
 )
 
-auth_patterns = [
-    path('token/', send_token, name='get_token'),
-    path('email/', send_confirm_code, name='send_confirm_code'),
-]
-
 urlpatterns = [
-    path('v1/auth/', include(auth_patterns)),
-    path('v1/', include(v1_router.urls)),
+    path('v1/', include(router_v1.urls)),
+    path('v1/auth/email/', RegisterView.as_view(),
+         name='get_confirmation_code'),
+    path('v1/auth/token/', TokenView.as_view(), name='get_token'),
 ]
