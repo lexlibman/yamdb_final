@@ -69,5 +69,5 @@ jobs:
           passphrase: ${{ secrets.PASSPHRASE }}
           script: |
             cd /home/lexlibman/code
-            sudo docker-compose stop
-            sudo docker-compose up -d
+            sudo docker stop $(sudo docker ps -a -q)
+            sudo docker-compose up --build -d
