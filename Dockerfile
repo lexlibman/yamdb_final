@@ -1,7 +1,5 @@
 FROM python:3.8.5 
- 
-LABEL name='API YamDB Yandex Practicum' version=3.14
- 
+
 WORKDIR /code 
  
 COPY ./requirements.txt . 

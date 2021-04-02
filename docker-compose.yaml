@@ -17,6 +17,8 @@ services:
   yamdb:
     image: lexlibman/yamdb_final:latest
     restart: always
+    expose:
+      - 8000
     volumes:
       - ./static_volume:/code/static
     depends_on:
