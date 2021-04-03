@@ -4,7 +4,7 @@ volumes:
   postgres_data:
   static_data:
   media_data:
-  nginx_config:
+  nginx:
 
 services:
   db:
