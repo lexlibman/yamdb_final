@@ -48,6 +48,17 @@ jobs:
     runs-on: ubuntu-latest
     needs: build_and_push_to_docker_hub
     steps:
+      - uses: actions/checkout@v2
+      - name: copy docker-compose and nginx_conf
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
+          overwrite: true
+          source: "./docker-compose.yaml,./nginx"
+          target: ${{ secrets.PATH_TO_COMPOSE }}
       - name: executing remote ssh commands to deploy
         uses: appleboy/ssh-action@master
         with:
@@ -56,11 +67,11 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
           script: |
-            cd /home/lexlibman/code
+            cd ${{ secrets.PATH_TO_COMPOSE }}
             sudo echo 'POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}' >> .env
             sudo echo 'DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }}' >> .env
-            sudo docker stop $(sudo docker ps -a -q)
-            sudo docker-compose up --build -d
+            docker-compose down
+            docker-compose up -d
 
   send_message:
     runs-on: ubuntu-latest
