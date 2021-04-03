@@ -19,7 +19,7 @@ services:
     image: lexlibman/yamdb_final:latest
     restart: always
     volumes:
-      - django_static:/static/
+      - django_static:/code/static/
       - nginx:/code/nginx/
     ports:
       - "5002:5002"
@@ -32,7 +32,7 @@ services:
     image: nginx:1.19.5-alpine
     restart: always
     volumes:
-      - django_static:/static/
+      - django_static:/code/static/
       - nginx:/etc/nginx/conf.d/
     ports:
       - "5003:5003"
