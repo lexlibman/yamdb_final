@@ -26,7 +26,7 @@ What things you need to install the software and how to install them
 
 A step by step series of examples that tell you have to get a development env running
 
-Environment variables what you need are in ```.env.example``` file
+Environment variables what you need are in `.env` file, but you need to add `POSTGRES_PASSWORD`
 
 Put they to .env and set yours values
 
@@ -63,13 +63,13 @@ $ python manage.py loaddata fixtures.json
 ```
 
 ### Site is working on: 
-* [130.193.57.79/admin/](http://130.193.57.79/admin/)
+* [130.193.57.79:5003/admin/](http://130.193.57.79:5003/admin/)
 
 ### Documentation:
-* [130.193.57.79/redoc/](http://130.193.57.79/redoc/)
+* [130.193.57.79:5003/redoc/](http://130.193.57.79:5003/redoc/)
 
 ### API:
-* [130.193.57.79/api/v1/](http://130.193.57.79/api/v1/)
+* [130.193.57.79:5003/api/v1/](http://130.193.57.79:5003/api/v1/)
 
 ## Running the tests
 
