@@ -19,7 +19,7 @@ services:
     image: lexlibman/yamdb_final:latest
     restart: always
     volumes:
-      - django_static:/code/static/
+      - django_static:/static/
       - nginx:/code/nginx/
     ports:
       - "5002:5002"
