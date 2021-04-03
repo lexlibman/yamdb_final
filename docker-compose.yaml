@@ -9,7 +9,6 @@ volumes:
 services:
   db:
     image: postgres:13.1-alpine
-    container_name: db
     restart: always
     volumes:
       - postgres_data:/var/lib/postgresql/data/
@@ -21,9 +20,8 @@ services:
     container_name: web
     restart: always
     volumes:
-      - static_data:/usr/src/web/static/
-      - media_data:/usr/src/web/media
-      - nginx_config:/usr/src/web/nginx/
+      - static_data:/code/static
+      - nginx_conf:/code/nginx/
     env_file:
       - ./.env
     depends_on:
@@ -34,10 +32,11 @@ services:
     restart: always
     container_name: nginx
     volumes:
-      - static_data:/usr/src/web/static
-      - media_data:/usr/src/web/media
-      - nginx_config:/etc/nginx/conf.d
+      - static_data:/code/static
+      - nginx_conf:/etc/nginx/conf.d/
     ports:
-      - 80:80
+      - 5000:80
     depends_on:
       - web
+    env_file:
+      - ./.env
