@@ -19,7 +19,6 @@ services:
     restart: always
     volumes:
       - static_data:/code/static
-      - nginx_conf:/code/nginx/
     env_file:
       - ./.env
     depends_on:
