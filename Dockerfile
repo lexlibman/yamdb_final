@@ -1,11 +1,18 @@
-FROM python:3.8.5
+FROM python:3.8-alpine
 
-WORKDIR /code
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+ENV APP_HOME=/usr/src/web
 
-COPY . .
+RUN apk update \
+    && apk add postgresql-dev gcc python3-dev musl-dev
 
-RUN pip install -r requirements.txt
-RUN python manage.py collectstatic --noinput
-RUN chmod +x entrypoint.sh
+COPY ./requirements.txt ./
 
-CMD ./entrypoint.sh
+RUN python3 -m pip install --upgrade pip \
+    && pip3 install -r requirements.txt --no-cache-dir
+
+WORKDIR $APP_HOME
+COPY . $APP_HOME
+
+CMD gunicorn api_yamdb.wsgi:application --bind 0.0.0.0:8000
