@@ -144,8 +144,10 @@ class GenreViewSet(CreateListDestroyViewSet):
 
 class CommentViewSet(ModelViewSet):
     serializer_class = CommentSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly, IsAuthor | IsModerator |
-                          IsAdminOrReadOnly | IsSuperuser]
+    permission_classes = [
+        IsAuthenticatedOrReadOnly,
+        IsAuthor | IsModerator | IsAdminOrReadOnly | IsSuperuser
+    ]
 
     def get_queryset(self):
         title_id = self.kwargs.get('title_id')
@@ -166,8 +168,10 @@ class CommentViewSet(ModelViewSet):
 
 class ReviewViewSet(ModelViewSet):
     serializer_class = ReviewSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly, IsAuthor | IsModerator |
-                          IsAdminOrReadOnly | IsSuperuser]
+    permission_classes = [
+        IsAuthenticatedOrReadOnly,
+        IsAuthor | IsModerator | IsAdminOrReadOnly | IsSuperuser
+    ]
     pagination_class = PageNumberPagination
 
     def get_queryset(self):
