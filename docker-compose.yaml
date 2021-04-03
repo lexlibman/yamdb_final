@@ -14,7 +14,7 @@ services:
     env_file:
       - ./.env
 
-  web:
+  yamdb:
     image: lexlibman/yamdb_final:latest
     restart: always
     volumes:
@@ -32,8 +32,8 @@ services:
       - static_data:/code/static
       - nginx_conf:/etc/nginx/conf.d/
     ports:
-      - 80:80
+      - 5000:80
     depends_on:
-      - web
+      - yamdb
     env_file:
       - ./.env
