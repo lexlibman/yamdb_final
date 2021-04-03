@@ -11,7 +11,6 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -37,6 +36,7 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'api_yamdb.urls'
 
 TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -55,7 +55,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'api_yamdb.wsgi.application'
 
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -66,7 +65,6 @@ DATABASES = {
         'PORT': os.environ.get('DB_PORT'),
     }
 }
-
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -98,8 +96,6 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static/'),)
-
 AUTH_USER_MODEL = 'api.User'
 
 REST_FRAMEWORK = {
@@ -117,11 +113,9 @@ REST_FRAMEWORK = {
     ],
 }
 
-
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': datetime.timedelta(days=365),
 }
-
 
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
