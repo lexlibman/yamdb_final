@@ -3,12 +3,11 @@ version: '3.3'
 volumes:
   postgres_data:
   static_data:
-  media_data:
   nginx_conf:
 
 services:
   db:
-    image: postgres:13.1-alpine
+    image: postgres:13
     restart: always
     volumes:
       - postgres_data:/var/lib/postgresql/data/
@@ -17,7 +16,6 @@ services:
 
   web:
     image: lexlibman/yamdb_final:latest
-    container_name: web
     restart: always
     volumes:
       - static_data:/code/static
@@ -28,9 +26,8 @@ services:
       - db
 
   nginx:
-    image: nginx:1.19.5-alpine
+    image: nginx:1.19.0-alpine
     restart: always
-    container_name: nginx
     volumes:
       - static_data:/code/static
       - nginx_conf:/etc/nginx/conf.d/
