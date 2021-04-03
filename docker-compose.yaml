@@ -1,19 +1,12 @@
 version: '3.3'
 
+volumes:
+  postgres_data:
+  static_data:
+  media_data:
+  nginx_config:
+
 services:
-
-  web:
-    image: lexlibman/yamdb_final:latest
-    container_name: web
-    restart: always
-    volumes:
-      - static_data:/usr/src/web/static/
-      - nginx_config:/usr/src/web/nginx/
-    env_file:
-      - ./.env
-    depends_on:
-      - db
-
   db:
     image: postgres:13.1-alpine
     container_name: db
@@ -23,8 +16,21 @@ services:
     env_file:
       - ./.env
 
+  web:
+    image: lexlibman/yamdb_final:latest
+    container_name: web
+    restart: always
+    volumes:
+      - static_data:/usr/src/web/static/
+      - media_data:/usr/src/web/media
+      - nginx_config:/usr/src/web/nginx/
+    env_file:
+      - ./.env
+    depends_on:
+      - db
+
   nginx:
-    image: nginx:1.19.6-alpine
+    image: nginx:1.19.5-alpine
     restart: always
     container_name: nginx
     volumes:
@@ -35,9 +41,3 @@ services:
       - 80:80
     depends_on:
       - web
-
-volumes:
-  postgres_data:
-  static_data:
-  media_data:
-  nginx_config:
