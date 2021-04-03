@@ -4,7 +4,7 @@ volumes:
   postgres_data:
   static_data:
   media_data:
-  nginx:
+  nginx_conf:
 
 services:
   db:
@@ -21,7 +21,7 @@ services:
     restart: always
     volumes:
       - static_data:/code/static
-      - nginx:/code/nginx/
+      - nginx_conf:/code/nginx/
     env_file:
       - ./.env
     depends_on:
@@ -33,7 +33,7 @@ services:
     container_name: nginx
     volumes:
       - static_data:/code/static
-      - nginx:/etc/nginx/conf.d/
+      - nginx_conf:/etc/nginx/conf.d/
     ports:
       - 5000:80
     depends_on:
